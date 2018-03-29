@@ -1,0 +1,36 @@
+### HASKELL LANGUAGE ###
+
+#   ELEMENT_NAME [optional-css-class] REGULAR_EXPRESSION
+
+    NAME                Haskell
+    VERSION             2.0.0
+
+    CASE_INSENSITIVE = OFF
+
+    PRAGMA:PREPROCESSOR  \{-#.*?#-}
+    COMMENT              \{-.*?-}|---*([^!#$%&*+./<=>?@\\^|\-~:].*?)?$
+    PREPROCESSOR         ^\s*#.*?$
+
+    PACKAGE:IDENTIFIER    (?<=^import\ssafe\squalified\s|^import\squalified\s|^import\ssafe\s|^import\s)\s*("[\d\-A-Za-z]+(\-\d+(\.\d+)*)?")?\s*[A-Z]['\w]*(\.[A-Z]['\w]*)*
+
+    STRING               (?<!['\w])'(\\['"]|\S+?)'|".*?(?<!\\)(\\\\)*"
+
+    RESERVED             (?<!['\w])(?alt:reserved.txt)(?!['#\w])
+    STATEMENT            (?<!['\w])(?alt:statement.txt)(?!['#\w])
+
+#   Uncomment to use KEYWORD element to distinguish identifiers in the Prelude
+#   KEYWORD              (?<!['\w])(?alt:keyword.txt)(?!['#\w])
+
+    MODULE:IDENTIFIER    (?<=^module\s|\sas\s)\s*[A-Z]['\w]*(\.[A-Z]['\w]*)*
+
+    RESERVED_OP:TYPE     (?<![!#$%&*+./<=>?@\\^|\-~:])(\((,+|->)?\)|\[]|(?<=\()\.\.(?=\))|::|->|=>)(?![!#$%&*+./<=>?@\\^|\-~:])
+    CONSTRUCTOR:TYPE     (?<![!#$%&*+./<=>?@\\^|\-~:])(`([A-Z]['\w]*\.)*[A-Z]['\w]*#?`|([A-Z]['\w]*\.)*:[!#$%&*+./<=>?@\\^|\-~:]+)
+    OPERATOR             (?<![!#$%&*+./<=>?@\\^|\-~:])(`([A-Z]['\w]*\.)*[a-z]['\w]*#?`|([A-Z]['\w]*\.)*[!#$%&*+./<=>?@\\^|\-~:]+)
+
+    ENTITY               ^[a-z]['\w]*#?\s*(?=::[^!#$%&*+./<=>?@\\^|\-~:])
+    IDENTIFIER           (?<!['\w])([A-Z]['\w]*\.)*[a-z]['\w]*#?
+    TYPE                 (?<!['\w])([A-Z]['\w]*\.)*[A-Z]['\w]*#?
+
+    CONSTANT             (?<!['\w])(\d+(\.\d+([Ee][+\-]?\d+)?|[Ee][+\-]?\d+)|0([bB][01]+|[oO][0-7]+|[xX][\dA-Fa-f]+(\.[\dA-Fa-f]+([Pp][+\-]?\d+)?|[Pp][+\-]?\d+)?)|\d+)#{0,2}
+
+    SYMBOL               [\(),;[\]{}_]
